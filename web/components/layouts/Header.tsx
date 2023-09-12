@@ -9,29 +9,25 @@ import {
   rem,
   ActionIcon,
   useMantineColorScheme,
-} from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import {
-  IconBrandInstagram,
-  IconChevronDown,
-  IconBrandGithub,
-  IconMail,
-} from "@tabler/icons-react";
-import { RiTwitterXLine } from "react-icons/ri";
-import Link from "next/link";
-import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
+} from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { IconChevronDown } from '@tabler/icons-react';
+import { IconType } from 'react-icons';
+import Link from 'next/link';
+import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs';
+import SocialBottoms from '../elements/SocialBottoms';
 
 const useStyles = createStyles((theme) => ({
   inner: {
     height: rem(56),
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 
   links: {
-    [theme.fn.smallerThan("sm")]: {
-      display: "none",
+    [theme.fn.smallerThan('sm')]: {
+      display: 'none',
     },
   },
 
@@ -42,34 +38,34 @@ const useStyles = createStyles((theme) => ({
   social: {
     width: rem(260),
 
-    [theme.fn.smallerThan("sm")]: {
-      width: "auto",
-      marginLeft: "auto",
+    [theme.fn.smallerThan('sm')]: {
+      width: 'auto',
+      marginLeft: 'auto',
     },
   },
 
   burger: {
-    [theme.fn.largerThan("sm")]: {
-      display: "none",
+    [theme.fn.largerThan('sm')]: {
+      display: 'none',
     },
   },
 
   link: {
-    display: "block",
+    display: 'block',
     lineHeight: 1,
     padding: `${rem(8)} ${rem(12)}`,
     borderRadius: theme.radius.sm,
-    textDecoration: "none",
+    textDecoration: 'none',
     color:
-      theme.colorScheme === "dark"
+      theme.colorScheme === 'dark'
         ? theme.colors.dark[0]
         : theme.colors.gray[7],
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
 
-    "&:hover": {
+    '&:hover': {
       backgroundColor:
-        theme.colorScheme === "dark"
+        theme.colorScheme === 'dark'
           ? theme.colors.dark[6]
           : theme.colors.gray[0],
     },
@@ -84,13 +80,13 @@ export interface LayoutHeaderProps {
   links: {
     link: string;
     label: string;
-    links?: { link: string; label: string }[];
+    links?: { link: string; label: string; icon?: IconType }[];
   }[];
 }
 
 export default function LayoutHeader({ links }: LayoutHeaderProps) {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-  const dark = colorScheme === "dark";
+  const dark = colorScheme === 'dark';
   const [opened, { toggle }] = useDisclosure(false);
   const { classes } = useStyles();
 
@@ -98,15 +94,20 @@ export default function LayoutHeader({ links }: LayoutHeaderProps) {
     const menuItems = link.links?.map((item) => (
       <a
         style={{
-          textDecoration: "none",
-          color: "inherit",
+          textDecoration: 'none',
+          color: 'inherit',
         }}
         href={item.link}
         key={item.link}
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Menu.Item>{item.label}</Menu.Item>
+        <Menu.Item>
+          <Group>
+            {item.icon ? <item.icon size={20} /> : null}
+            {item.label}
+          </Group>
+        </Menu.Item>
       </a>
     ));
 
@@ -159,47 +160,10 @@ export default function LayoutHeader({ links }: LayoutHeaderProps) {
             size="sm"
           />
           <Group spacing={0} className={classes.social} position="right" noWrap>
+            <SocialBottoms />
             <ActionIcon
               size="lg"
-              component="a"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="github"
-              href="https://github.com/HEKUCHAN"
-            >
-              <IconBrandGithub size="1.1rem" stroke={1.5} />
-            </ActionIcon>
-            <ActionIcon
-              size="lg"
-              component="a"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="twitter"
-              href="https://twitter.com/Heitor_Hirose"
-            >
-              <RiTwitterXLine />
-            </ActionIcon>
-            <ActionIcon
-              size="lg"
-              component="a"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="instagram"
-              href="https://www.instagram.com/hirose_heitor/"
-            >
-              <IconBrandInstagram size="1.1rem" stroke={1.5} />
-            </ActionIcon>
-            <ActionIcon
-              size="lg"
-              component={Link}
-              title="Contact form"
-              href="/form"
-            >
-              <IconMail size="1.1rem" stroke={1.5} />
-            </ActionIcon>
-            <ActionIcon
-              size="lg"
-              color={dark ? "yellow" : "blue"}
+              color={dark ? 'yellow' : 'blue'}
               onClick={() => toggleColorScheme()}
               title="Toggle Theme"
             >
