@@ -65,7 +65,9 @@ function App({ Component, pageProps }: AppProps) {
       toggleColorScheme={toggleColorScheme}
     >
       <MantineProvider
-        theme={{ colorScheme }}
+        theme={{
+          colorScheme,
+        }}
         withGlobalStyles
         withNormalizeCSS
       >
