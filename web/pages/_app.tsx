@@ -23,6 +23,9 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+import { PrismicPreview } from '@prismicio/next';
+import { repositoryName } from '@/prismicio';
+
 function App({ Component, pageProps }: AppProps) {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: 'mantine-color-scheme',
@@ -74,6 +77,7 @@ function App({ Component, pageProps }: AppProps) {
         <Header links={linksProps.links} />
         <main className={classes.main}>
           <Component {...pageProps} />
+          <PrismicPreview repositoryName={repositoryName} />
         </main>
         <Footer />
       </MantineProvider>
