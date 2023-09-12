@@ -1,0 +1,32 @@
+{
+  "id": "author",
+  "label": "author",
+  "format": "custom",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "name": {
+        "type": "Text",
+        "config": {
+          "label": "name",
+          "placeholder": ""
+        }
+      },
+      "picture": {
+        "type": "Image",
+        "config": {
+          "label": "picture",
+          "constraint": {},
+          "thumbnails": []
+        }
+      }
+    }
+  }
+}
