@@ -34,7 +34,7 @@ function App({ Component, pageProps }: AppProps) {
   const linksProps: HeaderProps = {
     links: [
       { link: '/', label: 'Home' },
-      { link: '/about', label: 'About' },
+      { link: '/profile', label: 'Profile' },
       { link: '/works', label: 'Works' },
       { link: '/career', label: 'Career' },
       { link: '/contact', label: 'Contact' },

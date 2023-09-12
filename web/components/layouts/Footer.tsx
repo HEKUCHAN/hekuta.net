@@ -35,7 +35,7 @@ export default function Footer() {
   return (
     <div className={classes.footer}>
       <Container className={classes.inner}>
-        <p>© 2023 HeitorHirose. All rights reserved.</p>
+        <p>© 2023 Heitor Hirose. All rights reserved.</p>
         <Group spacing={0} className={classes.links} position="right" noWrap>
           <SocialBottoms />
         </Group>

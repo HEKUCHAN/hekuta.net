@@ -13,7 +13,6 @@ import { TiBusinessCard } from 'react-icons/ti';
 import nextI18NextConfig from '../next-i18next.config.js';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetStaticProps } from 'next';
-import { useRouter } from 'next/router.js';
 
 const useStyles = createStyles((theme) => ({
   profileContainer: {
@@ -37,12 +36,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-type Props = {
-  // Add custom props here
-};
-
 export default function Index() {
-  const router = useRouter();
   const { classes } = useStyles();
   const { t } = useTranslation(['common']);
 
@@ -73,6 +67,10 @@ export default function Index() {
     </>
   );
 }
+
+type Props = {
+  // Add custom props here
+};
 
 export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => ({
   props: {
