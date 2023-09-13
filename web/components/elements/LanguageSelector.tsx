@@ -6,6 +6,7 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import nextI18NextConfig from '@/next-i18next.config.js';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { GetStaticProps } from 'next';
 
 type LanguageType = {
   label: string;
@@ -56,40 +57,23 @@ const useStyles = createStyles((theme, { opened }: { opened: boolean }) => ({
   },
 }));
 
-export const getServerSideProps = async ({ locale }: { locale: string }) => {
-  const selected_lang = await serverSideTranslations(
-    locale ?? 'ja',
-    ['common'],
-    nextI18NextConfig,
-  );
-  console.log(selected_lang);
-
-  return {
-    props: {
-      locale: selected_lang,
-    },
-  };
-};
-
-export default function LanguageSelector({ selected_lang }) {
+export default function LanguageSelector() {
   const [opened, setOpened] = useState(false);
   const { classes } = useStyles({ opened });
   const { i18n } = useTranslation();
-  const [selected, setSelected] = useState<LanguageType>(languages[0]);
   const router = useRouter();
 
-  const searchSelectedLanguage = (
-    selected_lang: string,
-    languages: LanguageType[],
-  ) => {
-    languages.map((lang) => {
-      if (lang.value === selected_lang) {
-        console.log(lang);
-        return lang;
+  const searchLang = () => {
+    for (const language of languages) {
+      if (language.value === i18n.language) {
+        console.log(language);
+        return language;
       }
-    });
+    }
     return languages[0];
   };
+
+  const [selected, setSelected] = useState<LanguageType>(searchLang());
 
   const handleLanguageChange = (selectedLanguage: LanguageType) => {
     setSelected(selectedLanguage);
@@ -98,11 +82,6 @@ export default function LanguageSelector({ selected_lang }) {
 
     router.push(router.pathname, undefined, { locale: selectedLanguage.value });
   };
-
-  useEffect(() => {
-    const currentLanguage = searchSelectedLanguage(i18n.language, languages);
-    setSelected(currentLanguage);
-  }, [i18n]);
 
   const items = languages.map((item) => (
     <Menu.Item onClick={() => handleLanguageChange(item)} key={item.label}>

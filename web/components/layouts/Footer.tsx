@@ -29,7 +29,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function Footer() {
+export default function Footer(lang: string) {
   const { classes } = useStyles();
 
   return (
