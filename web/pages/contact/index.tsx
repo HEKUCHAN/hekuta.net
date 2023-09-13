@@ -1,7 +1,11 @@
+import MainContainer from '@/components/layouts/MainContainer';
+
 export default function Contact() {
   return (
     <>
-      <h1>Contact</h1>
+      <MainContainer>
+        <h1>Contact</h1>
+      </MainContainer>
     </>
   );
 }
