@@ -20,6 +20,8 @@ import nextI18NextConfig from '../next-i18next.config.js';
 import { PrismicPreview } from '@prismicio/next';
 import { repositoryName } from '@/prismicio';
 import Script from 'next/script';
+import { GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations.js';
 
 const useStyles = createStyles((theme) => ({
   main: {
