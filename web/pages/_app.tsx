@@ -39,7 +39,6 @@ function App({ Component, pageProps }: AppProps) {
       { link: '/', label: 'Home' },
       { link: '/profile', label: 'Profile' },
       { link: '/works', label: 'Works' },
-      { link: '/career', label: 'Career' },
       { link: '/contact', label: 'Contact' },
       {
         link: '',

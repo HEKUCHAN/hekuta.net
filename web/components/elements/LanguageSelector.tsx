@@ -66,7 +66,6 @@ export default function LanguageSelector() {
   const searchLang = () => {
     for (const language of languages) {
       if (language.value === i18n.language) {
-        console.log(language);
         return language;
       }
     }

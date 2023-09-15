@@ -2,5 +2,14 @@
   "name": "Hirose Heitor",
   "location": "Aichi-ken, Japan",
   "role": "High schooler",
-  "self_introduction": "I am a high school student living in Aichi Prefecture.<1/>I have a hobby of playing games and programming!<1/>My specialty is Python, and I aspire to become an infrastructure and backend engineer in the future."
+  "self_introduction": "I am a high school student living in Aichi Prefecture.<1/>I have a hobby of playing games and programming!<1/>My specialty is Python, and I aspire to become an infrastructure and backend engineer in the future.",
+  "languages_descriptions": {
+    "python": "I can develop Python packages and web apps with FastAPI, and Flask. In the future, I plan to create Python packages using languages such as Rust.",
+    "golang": "I am currently studying to be able to use it on the backend. In the future, I would like to be able to create applications using real-time communication.",
+    "rust": "I am currently studying to develop a package that combines Python and Rust.",
+    "typescript": "Unlike Javascript, types can be written, so I've been using it in recent front-end projects.",
+    "nextjs": "I use it for hackathons and outsourcing. This site is also created with Next.js.",
+    "nuxtjs": "I used it for about a year as an intern. I use it for projects where I want to use Vue.js on the frontend."
+  },
+  "works_message": "There are currently no projects open to the public."
 }

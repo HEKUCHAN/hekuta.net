@@ -1,4 +1,4 @@
-import { createStyles, Container, Group, ActionIcon, rem } from '@mantine/core';
+import { createStyles, Container, Group, rem } from '@mantine/core';
 import SocialBottoms from '@/components/elements/SocialBottoms';
 import LanguageSelector from '../elements/LanguageSelector';
 
@@ -29,7 +29,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function Footer(lang: string) {
+export default function Footer() {
   const { classes } = useStyles();
 
   return (
