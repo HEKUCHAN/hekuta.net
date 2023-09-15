@@ -54,9 +54,11 @@ const Meta = ({
       <meta property="og:site_name" content={pageTitle} />
       <meta property="og:locale" content={lang} />
 
+      <meta property="twitter:title" content={pageTitle} />
       <meta name="twitter:card" content={twitterCard} />
       <meta name="twitter:site" content={twitterSite} />
       <meta name="twitter:image" content={ogImage} />
+      <meta property="twitter:description" content={selfIntroduction} />
 
       <link rel="shortcut icon" href={favicon} />
       <link rel="icon" href={favicon} />
