@@ -11,5 +11,15 @@
     "nextjs": "I use it for hackathons and outsourcing. This site is also created with Next.js.",
     "nuxtjs": "I used it for about a year as an intern. I use it for projects where I want to use Vue.js on the frontend."
   },
-  "works_message": "There are currently no projects open to the public."
+  "works_message": "There are currently no projects open to the public.",
+  "form": {
+    "title": "Get in touch",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "submit": "Send",
+    "thanks": "Thanks for contacting.",
+    "thanks_message": "Please allow up to two weeks for a reply."
+  }
 }

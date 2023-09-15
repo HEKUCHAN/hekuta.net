@@ -41,7 +41,12 @@ export default function SocialBottoms() {
       >
         <IconBrandInstagram size="1.1rem" stroke={1.5} />
       </ActionIcon>
-      <ActionIcon size="lg" component={Link} title="Contact form" href="/form">
+      <ActionIcon
+        size="lg"
+        component={Link}
+        title="Contact form"
+        href="/contact"
+      >
         <IconMail size="1.1rem" stroke={1.5} />
       </ActionIcon>
     </>
