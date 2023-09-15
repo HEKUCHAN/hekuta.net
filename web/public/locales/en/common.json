@@ -22,5 +22,12 @@
     "thanks": "Thanks for contacting.",
     "thanks_message": "Please allow up to two weeks for a reply."
   },
-  "policy_title": "Privacy Policy and Disclaimer"
+  "policy_title": "Privacy Policy and Disclaimer",
+  "error": {
+    "404": {
+      "title": "You have found a secret place.",
+      "message": "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved to another URL.",
+      "button": "Take me back to home page"
+    }
+  }
 }
