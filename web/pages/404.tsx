@@ -12,6 +12,9 @@ import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
+import Head from 'next/head';
+import Meta from '@/components/Meta';
+import { useRouter } from 'next/router';
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -56,28 +59,35 @@ const useStyles = createStyles((theme) => ({
 
 export default function Custom404() {
   const { classes } = useStyles();
+  const router = useRouter();
   const { t } = useTranslation(['common']);
 
   return (
-    <Container className={classes.root}>
-      <div className={classes.label}>404</div>
-      <Title className={classes.title}>{t('error.404.title')}</Title>
-      <Text
-        color="dimmed"
-        size="lg"
-        align="center"
-        className={classes.description}
-      >
-        {t('error.404.message')}
-      </Text>
-      <Group position="center">
-        <Link href="/">
-          <Button variant="subtle" size="md">
-            {t('error.404.button')}
-          </Button>
-        </Link>
-      </Group>
-    </Container>
+    <>
+      <Head>
+        <meta name="robots" content="noindex" />
+      </Head>
+      <Meta siteName="PrivacyPolicy" />
+      <Container className={classes.root}>
+        <div className={classes.label}>404</div>
+        <Title className={classes.title}>{t('error.404.title')}</Title>
+        <Text
+          color="dimmed"
+          size="lg"
+          align="center"
+          className={classes.description}
+        >
+          {t('error.404.message')}
+        </Text>
+        <Group position="center">
+          <Link href="/">
+            <Button variant="subtle" size="md">
+              {t('error.404.button')}
+            </Button>
+          </Link>
+        </Group>
+      </Container>
+    </>
   );
 }
 

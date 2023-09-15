@@ -13,6 +13,8 @@ import { TiBusinessCard } from 'react-icons/ti';
 import nextI18NextConfig from '../next-i18next.config.js';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetStaticProps } from 'next';
+import Meta from '@/components/Meta';
+import { useRouter } from 'next/router';
 
 const useStyles = createStyles((theme) => ({
   profileContainer: {
@@ -39,9 +41,11 @@ const useStyles = createStyles((theme) => ({
 export default function Index() {
   const { classes } = useStyles();
   const { t } = useTranslation(['common']);
+  const router = useRouter();
 
   return (
     <>
+      <Meta isHomePage={true} />
       <BackgroundImage
         src="/index_page_background.jpg"
         className={classes.profileBackground}

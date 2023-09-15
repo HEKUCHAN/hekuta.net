@@ -9,6 +9,8 @@ import MainContainer from '@/components/layouts/MainContainer';
 import SubContainer from '@/components/layouts/SubContainer';
 import Skills from '@/components/elements/profile/Skills';
 import Career from '@/components/elements/profile/Career';
+import Meta from '@/components/Meta';
+import { useRouter } from 'next/router';
 
 const useStyles = createStyles((theme) => ({
   profile: {
@@ -26,60 +28,64 @@ const useStyles = createStyles((theme) => ({
 export default function About() {
   const { classes } = useStyles();
   const { t } = useTranslation(['common']);
+  const router = useRouter();
 
   return (
-    <MainContainer>
-      <h1>Profile</h1>
-      <div className={classes.profile}>
-        <Group position="center">
-          <Avatar
-            className={classes.profileImage}
-            src="/profile_image.jpg"
-            size={180}
-            radius="100%"
-          />
-          <Stack className={classes.description}>
-            <p>
-              <Trans i18nKey="self_introduction" components={{ 1: <br /> }} />
-            </p>
-            <Group>
-              <Group spacing="xs">
-                <FaLocationDot />
-                <p>{t('location')}</p>
+    <>
+      <Meta siteName="Profile" />
+      <MainContainer>
+        <h1>Profile</h1>
+        <div className={classes.profile}>
+          <Group position="center">
+            <Avatar
+              className={classes.profileImage}
+              src="/profile_image.jpg"
+              size={180}
+              radius="100%"
+            />
+            <Stack className={classes.description}>
+              <p>
+                <Trans i18nKey="self_introduction" components={{ 1: <br /> }} />
+              </p>
+              <Group>
+                <Group spacing="xs">
+                  <FaLocationDot />
+                  <p>{t('location')}</p>
+                </Group>
+                <Group spacing="xs">
+                  <TiBusinessCard />
+                  <p>{t('role')}</p>
+                </Group>
               </Group>
-              <Group spacing="xs">
-                <TiBusinessCard />
-                <p>{t('role')}</p>
-              </Group>
-            </Group>
-          </Stack>
-        </Group>
-      </div>
+            </Stack>
+          </Group>
+        </div>
 
-      <SubContainer>
-        <h2>Skills</h2>
-        <Skills />
-      </SubContainer>
+        <SubContainer>
+          <h2>Skills</h2>
+          <Skills />
+        </SubContainer>
 
-      <SubContainer>
-        <h2>Career</h2>
-        <Career />
-      </SubContainer>
+        <SubContainer>
+          <h2>Career</h2>
+          <Career />
+        </SubContainer>
 
-      <SubContainer>
-        <h2>Events and Tournament</h2>
-        <List>
-          <List.Item>第一回 P共通テスト 全国13位</List.Item>
-        </List>
-      </SubContainer>
+        <SubContainer>
+          <h2>Events and Tournament</h2>
+          <List>
+            <List.Item>第一回 P共通テスト 全国13位</List.Item>
+          </List>
+        </SubContainer>
 
-      <SubContainer>
-        <h2>Hackathon</h2>
-        <List>
-          <List.Item>【技育CAMP】マンスリーハッカソン vol.9</List.Item>
-        </List>
-      </SubContainer>
-    </MainContainer>
+        <SubContainer>
+          <h2>Hackathon</h2>
+          <List>
+            <List.Item>【技育CAMP】マンスリーハッカソン vol.9</List.Item>
+          </List>
+        </SubContainer>
+      </MainContainer>
+    </>
   );
 }
 

@@ -4,6 +4,9 @@ import { GetStaticProps } from 'next';
 import { useTranslation } from 'next-i18next';
 import MainContainer from '@/components/layouts/MainContainer';
 import { createStyles } from '@mantine/core';
+import Meta from '@/components/Meta';
+import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 const useStyles = createStyles((theme) => ({
   title: {
@@ -16,13 +19,20 @@ const useStyles = createStyles((theme) => ({
 
 export default function ContactThanks() {
   const { classes } = useStyles();
+  const router = useRouter();
   const { t } = useTranslation(['common']);
 
   return (
-    <MainContainer>
-      <h1 className={classes.title}>{t('form.thanks')}</h1>
-      <p className={classes.message}>{t('form.thanks_message')}</p>
-    </MainContainer>
+    <>
+      <Head>
+        <meta name="robots" content="noindex" />
+      </Head>
+      <Meta siteName="Thanks for contacting" />
+      <MainContainer>
+        <h1 className={classes.title}>{t('form.thanks')}</h1>
+        <p className={classes.message}>{t('form.thanks_message')}</p>
+      </MainContainer>
+    </>
   );
 }
 

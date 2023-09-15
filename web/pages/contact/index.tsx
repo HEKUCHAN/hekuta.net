@@ -12,9 +12,12 @@ import nextI18NextConfig from '@/next-i18next.config.js';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetStaticProps } from 'next';
 import { useTranslation } from 'next-i18next';
+import Meta from '@/components/Meta';
+import { useRouter } from 'next/router';
 
 export default function Contact() {
   const { t } = useTranslation(['common']);
+  const router = useRouter();
   const form = useForm({
     initialValues: {
       name: '',
@@ -31,6 +34,7 @@ export default function Contact() {
 
   return (
     <>
+      <Meta siteName="Contact" />
       <MainContainer>
         <form
           className="formrun"
