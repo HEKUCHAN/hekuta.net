@@ -9,6 +9,7 @@ import {
   rem,
   ActionIcon,
   useMantineColorScheme,
+  Drawer,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconChevronDown } from '@tabler/icons-react';
@@ -73,6 +74,25 @@ const useStyles = createStyles((theme) => ({
 
   linkLabel: {
     marginRight: rem(5),
+  },
+
+  drawer: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+
+  drawer_link: {
+    textDecoration: 'none',
+    color: 'inherit',
+    textAlign: 'center',
+    padding: `${rem(10)} ${rem(8)}`,
+
+    '&:hover': {
+      backgroundColor:
+        theme.colorScheme === 'dark'
+          ? theme.colors.dark[6]
+          : theme.colors.gray[0],
+    },
   },
 }));
 
@@ -146,36 +166,82 @@ export default function LayoutHeader({ links }: LayoutHeaderProps) {
     );
   });
 
+  const drawer_items = links.map((link) => {
+    const menuItem = link.links?.map((item) => {
+      return (
+        <Link
+          key={item.label}
+          href={item.link}
+          className={classes.drawer_link}
+          onClick={toggle}
+        >
+          {item.label}
+        </Link>
+      );
+    });
+
+    if (menuItem) {
+      return menuItem;
+    }
+
+    return (
+      <Link
+        key={link.label}
+        href={link.link}
+        className={classes.drawer_link}
+        onClick={toggle}
+      >
+        {link.label}
+      </Link>
+    );
+  });
+
   return (
-    <Header height={56} mb={120} fixed={true}>
-      <Container>
-        <div className={classes.inner}>
-          <Group spacing={5} className={classes.links}>
-            {items}
-          </Group>
-          <Burger
-            opened={opened}
-            onClick={toggle}
-            className={classes.burger}
-            size="sm"
-          />
-          <Group spacing={0} className={classes.social} position="right" noWrap>
-            <SocialBottoms />
-            <ActionIcon
-              size="lg"
-              color={dark ? 'yellow' : 'blue'}
-              onClick={() => toggleColorScheme()}
-              title="Toggle Theme"
+    <>
+      <Drawer
+        size="xl"
+        zIndex={1100}
+        opened={opened}
+        onClose={toggle}
+        title="Menu"
+      >
+        <div className={classes.drawer}>{drawer_items}</div>
+      </Drawer>
+      <Header height={56} mb={120} fixed={true}>
+        <Container>
+          <div className={classes.inner}>
+            <Group spacing={5} className={classes.links}>
+              {items}
+            </Group>
+            <Burger
+              opened={opened}
+              onClick={toggle}
+              className={classes.burger}
+              size="sm"
+            />
+            <Group
+              spacing={0}
+              className={classes.social}
+              position="right"
+              noWrap
             >
-              {dark ? (
-                <BsFillSunFill size={15} />
-              ) : (
-                <BsFillMoonFill size={15} />
-              )}
-            </ActionIcon>
-          </Group>
-        </div>
-      </Container>
-    </Header>
+              <SocialBottoms />
+              <ActionIcon
+                size="lg"
+                color={dark ? 'yellow' : 'blue'}
+                onClick={() => toggleColorScheme()}
+                title="Toggle Theme"
+              >
+                {dark ? (
+                  <BsFillSunFill size={15} />
+                ) : (
+                  <BsFillMoonFill size={15} />
+                )}
+              </ActionIcon>
+            </Group>
+          </div>
+        </Container>
+      </Header>
+    </>
   );
 }
