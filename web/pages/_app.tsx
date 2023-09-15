@@ -20,8 +20,9 @@ import nextI18NextConfig from '../next-i18next.config.js';
 import { PrismicPreview } from '@prismicio/next';
 import { repositoryName } from '@/prismicio';
 import Script from 'next/script';
-import { GetStaticProps } from 'next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations.js';
+import * as gtag from '@/lib/gtag';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 const useStyles = createStyles((theme) => ({
   main: {
@@ -37,6 +38,7 @@ function App({ Component, pageProps }: AppProps) {
     getInitialValueInEffect: true,
   });
   const { classes } = useStyles();
+  const router = useRouter();
 
   const linksProps: HeaderProps = {
     links: [
@@ -65,10 +67,36 @@ function App({ Component, pageProps }: AppProps) {
 
   useHotkeys([['mod+J', () => toggleColorScheme()]]);
 
+  useEffect(() => {
+    const handleRouterChange = (url: any) => {
+      gtag.pageview(url);
+    };
+    router.events.on('routeChangeComplete', handleRouterChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouterChange);
+    };
+  }, [router.events]);
+
   return (
     <>
       <Script src="https://sdk.form.run/js/v2/formrun.js" />
-      <Script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></Script>
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_MEASUREMENT_ID}`}
+      />
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+           window.dataLayer = window.dataLayer || [];
+           function gtag(){dataLayer.push(arguments);}
+           gtag('js', new Date());
+ 
+           gtag('config', '${gtag.GA_MEASUREMENT_ID}');
+           `,
+        }}
+      />
       <ColorSchemeProvider
         colorScheme={colorScheme}
         toggleColorScheme={toggleColorScheme}
