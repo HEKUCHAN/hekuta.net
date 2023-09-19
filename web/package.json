@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "slicemachine": "start-slicemachine"
@@ -58,6 +59,7 @@
     "@slicemachine/adapter-next": "^0.3.14",
     "@typescript-eslint/parser": "^6.7.0",
     "eslint-config-prettier": "^9.0.0",
+    "next-sitemap": "^4.2.3",
     "postcss": "^8.4.29",
     "postcss-preset-mantine": "^1.7.0",
     "postcss-simple-vars": "^7.0.1",
