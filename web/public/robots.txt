@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://hekuta.net
+
+# Sitemaps
+Sitemap: https://hekuta.net/sitemap.xml
